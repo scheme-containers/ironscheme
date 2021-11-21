@@ -2,15 +2,18 @@
 # The IRONSCHEME_LIBRARY_PATH variable is non-standard.
 set -eu
 runtime=mono # This line is different between dotnet and mono.
-exe=ironscheme
 flags=()
 case $(basename "$0") in
-scheme-banner) exe=IronScheme.Console-v4.exe ;;
-*) flags+=(/nologo) ;;
+scheme-banner)
+        flags+=(/logo)
+        ;;
+*)
+        flags+=(/nologo)
+        ;;
 esac
 flags+=(--)
 IFS=':' read -ra library_path <<<"${IRONSCHEME_LIBRARY_PATH:-}"
 for dir in "${library_path[@]}"; do
         flags+=(-I "$dir")
 done
-exec "$runtime" "/usr/local/IronScheme/$exe" "${flags[@]}" "$@"
+exec "$runtime" "/usr/local/IronScheme/ironscheme" "${flags[@]}" "$@"

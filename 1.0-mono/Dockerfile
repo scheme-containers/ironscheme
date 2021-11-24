@@ -17,8 +17,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
   && rm -rf /var/lib/apt/lists/*
 ENV LANG C.UTF-8
 COPY ironscheme /usr/local/bin/
-RUN ln -s IronScheme.Console-v4.exe /usr/local/IronScheme/ironscheme && \
-    ln -s ironscheme /usr/local/bin/isc && \
+RUN ln -s ironscheme /usr/local/bin/isc && \
     ln -s ironscheme /usr/local/bin/scheme-banner && \
     ln -s ironscheme /usr/local/bin/scheme-script
 CMD ["scheme-banner"]

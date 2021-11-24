@@ -13,8 +13,7 @@ FROM mcr.microsoft.com/dotnet/core/runtime:3.0
 COPY --from=build /usr/local/IronScheme /usr/local/IronScheme/
 ENV LANG C.UTF-8
 COPY ironscheme /usr/local/bin/
-RUN ln -s IronScheme.ConsoleCore.dll /usr/local/IronScheme/ironscheme && \
-    ln -s ironscheme /usr/local/bin/isc && \
+RUN ln -s ironscheme /usr/local/bin/isc && \
     ln -s ironscheme /usr/local/bin/scheme-banner && \
     ln -s ironscheme /usr/local/bin/scheme-script
 CMD ["scheme-banner"]

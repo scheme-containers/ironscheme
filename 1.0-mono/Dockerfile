@@ -1,5 +1,5 @@
 # -*- mode: dockerfile; coding: utf-8 -*-
-FROM debian:buster-slim AS build
+FROM debian:bullseye-slim AS build
 RUN apt-get update && apt-get -y --no-install-recommends install \
       unzip \
  && rm -rf /var/lib/apt/lists/*
@@ -9,7 +9,7 @@ ADD https://github.com/IronScheme/IronScheme/releases/download/1.0.239/IronSchem
 RUN sha256sum IronScheme.zip && sha256sum -c checksum
 RUN unzip IronScheme.zip && mv IronScheme /usr/local
 
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 COPY --from=build /usr/local/IronScheme /usr/local/IronScheme/
 RUN apt-get update && apt-get -y --no-install-recommends install \
        mono-devel \
